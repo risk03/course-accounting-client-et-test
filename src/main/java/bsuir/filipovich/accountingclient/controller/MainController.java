@@ -21,19 +21,13 @@ public class MainController {
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(Model model) {
-
-        String message = "Hello Spring Boot + JSP";
-
-        model.addAttribute("message", message);
-
+        model.addAttribute("message", "Hello Spring Boot + JSP");
         return "index";
     }
 
     @RequestMapping(value = {"/personList"}, method = RequestMethod.GET)
     public String viewPersonList(Model model) {
-
         model.addAttribute("persons", persons);
-
         return "personList";
     }
 

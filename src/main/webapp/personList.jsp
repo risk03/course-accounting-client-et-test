@@ -10,7 +10,7 @@
 <h1>Person List</h1>
 <br/><br/>
 <div>
-    <table border="1">
+    <table>
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
