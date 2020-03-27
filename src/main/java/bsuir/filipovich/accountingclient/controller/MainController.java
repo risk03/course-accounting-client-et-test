@@ -1,6 +1,8 @@
 package bsuir.filipovich.accountingclient.controller;
 
 import bsuir.filipovich.accountingclient.model.Person;
+import bsuir.filipovich.accountingclient.service.IService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,13 @@ import java.util.List;
 
 @Controller
 public class MainController {
+
+    IService service;
+
+    @Autowired
+    MainController(IService service) {
+        this.service = service;
+    }
 
     private static List<Person> persons = new ArrayList<Person>();
 
@@ -28,6 +37,7 @@ public class MainController {
     @RequestMapping(value = {"/personList"}, method = RequestMethod.GET)
     public String viewPersonList(Model model) {
         model.addAttribute("persons", persons);
+        model.addAttribute("message", service.getMessage());
         return "personList";
     }
 

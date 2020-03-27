@@ -1,15 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>Person List</title>
+    <title>Управление пользователями</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
 </head>
 <body>
-<h1>Person List</h1>
-<br/><br/>
-<div>
+<div class="wrapper">
     <table>
         <tr>
             <th>First Name</th>
@@ -22,6 +21,7 @@
             </tr>
         </c:forEach>
     </table>
+    ${message}
 </div>
 </body>
 </html>

@@ -1,4 +1,28 @@
-table{
-    border: red solid 1px;
+body {
+    min-width: fit-content;
+    font-family: "Ultima Pro";
+}
+
+.wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+table, th, td{
+    border: black solid 1px;
     border-collapse: collapse;
+}
+
+table {
+    width: 95%;
+    margin: 0 auto;
+    table-layout: fixed;
+    overflow-wrap: break-word;
+}
+
+th{
+    font-weight: bold;
 }
