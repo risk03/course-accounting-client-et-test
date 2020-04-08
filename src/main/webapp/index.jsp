@@ -9,6 +9,5 @@
 <body>
 <h1>Welcome</h1>
 <h2>${message}</h2>
-<a href="${pageContext.request.contextPath}/personList">Person List</a>
 </body>
 </html>
