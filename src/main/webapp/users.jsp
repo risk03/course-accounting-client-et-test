@@ -56,17 +56,17 @@
                 <tr>
                     <td>ID</td>
                     <td><label><input name="id" type="number" min="0"/></label></td>
-                    <td><label><input type="submit" value="Добавить"></label></td>
+                    <td><label><input type="submit" value="Добавить" name="add"></label></td>
                 </tr>
                 <tr>
                     <td>Фамилия</td>
                     <td><label><input name="surname" type="text" maxlength="45"></label></td>
-                    <td><label><input type="submit" value="Сохранить"></label></td>
+                    <td><label><input type="submit" value="Сохранить" name="save"></label></td>
                 </tr>
                 <tr>
                     <td>Имя</td>
                     <td><label><input name="forename" type="text" maxlength="45"></label></td>
-                    <td><label><input type="submit" value="Удалить"></label></td>
+                    <td><label><input type="submit" value="Удалить" name="delete"></label></td>
                 </tr>
                 <tr>
                     <td>Отчество</td>
