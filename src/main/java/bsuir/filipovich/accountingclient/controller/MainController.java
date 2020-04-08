@@ -41,4 +41,9 @@ public class MainController {
         return "personList";
     }
 
+    @RequestMapping(value = {"/table"}, method = RequestMethod.GET)
+    public String viewUserList(Model model) {
+        model.addAttribute("userList", service.getUserList());
+        return "table";
+    }
 }

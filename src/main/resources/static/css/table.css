@@ -1,0 +1,158 @@
+body {
+    min-width: fit-content;
+    font-family: "Ultima Pro";
+}
+
+#menu {
+    width: 17vw;
+    background: #d3d3d3;
+    text-align: center;
+    display: none;
+    height: 98vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    padding: 1vh 1vw 1vh 1vw;
+    color: white;
+    animation: slide 90ms;
+    border-right: 1px solid darkblue;
+}
+
+@keyframes fadeinblack {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.25;
+    }
+}
+
+@keyframes fadeinbuttons {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slide {
+    from {
+        width: 0
+    }
+    to {
+        width: 17vw
+    }
+}
+
+#menu input[type="button"] {
+    font-size: 16px;
+    text-decoration: none;
+    padding: 0.5em 1.5em;
+    cursor: pointer;
+    width: 16vw;
+    border-radius: 3vh;
+    background-color: rgba(26, 26, 255, 0.25);
+    color: rgba(255, 255, 255, 0.99);
+    display: none;
+    height: 6vh;
+    align-content: center;
+    min-height: 3em;
+    margin-bottom: 1vh;
+    animation: fadeinbuttons 90ms;
+}
+
+#menu input[type="button"]:hover {
+    box-shadow: 0 0 5px #0000ff;
+    text-shadow: 0 0 5px #0000ff;
+}
+
+.wrapper{
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+}
+
+.left-trigger{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1vw;
+    height: 100vh;
+    z-index: 10;
+}
+
+#black {
+    background: black;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.25;
+    display: none;
+    animation: fadeinblack 0.5s;
+}
+
+
+.up{
+    height: calc(100%/3*2);
+    background: grey;
+}
+
+.down{
+    height: calc(100%/3 - 2em);
+    background: lightgrey;
+    padding: 1em;
+}
+
+input:invalid{
+    background: salmon;
+}
+
+.wrapper-header{
+    background: lightblue;
+}
+.table-header{
+    width: 100%;
+}
+.wrapper-content{
+    overflow: auto;
+    height: 100%;
+}
+
+.main-table{
+    width: 100%;
+    height: 100%;
+}
+.main-table tr:first-of-type{
+    height: 1em;
+}
+
+.table-content{
+    width: 100%;
+    background: lightgrey;
+    table-layout: fixed;
+}
+.table-content, .table-content td {
+    border: black 1px solid;
+    border-collapse: collapse;
+}
+
+.table-content tr:hover{
+    background: white;
+    cursor: pointer;
+}
+
+.table-header{
+    table-layout: fixed;
+}
+.table-content td, .table-header th{
+    text-align: center;
+}
+.table-header th{
+    cursor: pointer;
+}
