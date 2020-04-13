@@ -20,7 +20,6 @@ public class MainController {
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(Model model) {
-        model.addAttribute("message", "Hello Spring Boot + JSP");
         return "index";
     }
 
@@ -33,7 +32,7 @@ public class MainController {
                                @RequestParam(required = false) String patronymic,
                                @RequestParam(required = false) String role,
                                @RequestParam(required = false) String login) {
-        model.addAttribute("userList", service.getUserList());
+        model.addAttribute("userList", service.readAll("user"));
         if (operation != null) {
             switch (operation) {
                 case "Добавить":
@@ -59,7 +58,7 @@ public class MainController {
                                 @RequestParam(required = false) String number,
                                 @RequestParam(required = false) String building,
                                 @RequestParam(required = false) String operation) {
-        model.addAttribute("storeList", service.getStoresList());
+        model.addAttribute("storeList", service.readAll("store"));
         if (operation != null) {
             switch (operation) {
                 case "Добавить":
@@ -74,5 +73,29 @@ public class MainController {
             }
         }
         return "stores";
+    }
+
+    @RequestMapping(value = {"/products"}, method = RequestMethod.GET)
+    public String viewProductList(Model model,
+                                @RequestParam(required = false) String id,
+                                @RequestParam(required = false) String name,
+                                @RequestParam(required = false) String sellingPrice,
+                                @RequestParam(required = false) String description,
+                                @RequestParam(required = false) String operation) {
+        model.addAttribute("productList", service.readAll("product"));
+        if (operation != null) {
+            switch (operation) {
+                case "Добавить":
+                    service.create("product", new String[]{id, name, sellingPrice, description});
+                    break;
+                case "Сохранить":
+                    service.update("product", new String[]{id, name, sellingPrice, description});
+                    break;
+                case "Удалить":
+                    service.remove("product", id);
+                    break;
+            }
+        }
+        return "products";
     }
 }
