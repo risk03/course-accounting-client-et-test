@@ -3,10 +3,10 @@ $(document).ready(function () {
             $(this).click(sortTable.bind(null, index));
         }
     );
-    $(".table-content tr").each(function(index){
+    $(".table-content tr").each(function (index) {
         $(this).click(fill)
     });
-    $(".left-trigger").each(function(index){
+    $(".left-trigger").each(function (index) {
         $(this).mouseenter(switchMenu)
     });
     $("#black").each(function (index) {
@@ -15,7 +15,6 @@ $(document).ready(function () {
 });
 
 function switchMenu() {
-    console.log(1);
     if (switchMenu.menu_is_visible === null) {
         switchMenu.menu_is_visible = false;
     }
@@ -23,14 +22,14 @@ function switchMenu() {
     if (switchMenu.menu_is_visible) {
         menu.style.display = "none";
         document.getElementById("black").style.display = "none";
-        document.getElementsByName("menubutton").forEach(node => node.style.display = "none");
+        Array.from(document.getElementsByName("menubutton")).forEach(node => node.style.display = "none");
         switchMenu.menu_is_visible = false;
     } else {
         menu.style.display = "block";
         document.getElementById("black").style.display = "block";
         setTimeout(() => {
-            document.getElementsByName("menubutton").forEach(node => node.style.display = "block");
-    }, 90);
+            Array.from(document.getElementsByName("menubutton")).forEach(node => node.style.display = "block");
+        }, 90);
         switchMenu.menu_is_visible = true;
     }
 }
@@ -70,4 +69,24 @@ function sortTable(n) {
             }
         }
     }
+}
+
+function insertParam(key, value) {
+    key = encodeURI(key);
+    value = encodeURI(value);
+    var kvp = document.location.search.substr(1).split('&');
+    var i = kvp.length;
+    var x;
+    while (i--) {
+        x = kvp[i].split('=');
+        if (x[0] == key) {
+            x[1] = value;
+            kvp[i] = x.join('=');
+            break;
+        }
+    }
+    if (i < 0) {
+        kvp[kvp.length] = [key, value].join('=');
+    }
+    document.location.search = kvp.join('&');
 }

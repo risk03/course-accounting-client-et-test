@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/table.css"/>
     <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/table.js"></script>
-    <script src="${pageContext.request.contextPath}/js/store.js"></script>
+    <script src="${pageContext.request.contextPath}/js/stores.js"></script>
 </head>
 <body>
 <div class="wrapper">

@@ -95,6 +95,11 @@ body {
 .go{
     background: #ADD8E6;
     text-decoration: underline;
+    color: blue;
+}
+
+.go:hover{
+    background: #eeeeee;
 }
 
 #black {
@@ -119,6 +124,10 @@ body {
     height: calc(100%/3 - 2em);
     background: lightgrey;
     padding: 1em;
+}
+
+.down input[type="submit"]{
+    width: 20vw;
 }
 
 input:invalid{

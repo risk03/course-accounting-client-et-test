@@ -75,13 +75,21 @@ public class MainController {
         return "stores";
     }
 
+    @RequestMapping(value = {"/store"}, method = RequestMethod.GET)
+    public String viewStore(Model model,
+                            @RequestParam(required = false) String id) {
+        model.addAttribute("param", id);
+        return "store";
+    }
+
+
     @RequestMapping(value = {"/products"}, method = RequestMethod.GET)
     public String viewProductList(Model model,
-                                @RequestParam(required = false) String id,
-                                @RequestParam(required = false) String name,
-                                @RequestParam(required = false) String sellingPrice,
-                                @RequestParam(required = false) String description,
-                                @RequestParam(required = false) String operation) {
+                                  @RequestParam(required = false) String id,
+                                  @RequestParam(required = false) String name,
+                                  @RequestParam(required = false) String sellingPrice,
+                                  @RequestParam(required = false) String description,
+                                  @RequestParam(required = false) String operation) {
         model.addAttribute("productList", service.readAll("product"));
         if (operation != null) {
             switch (operation) {

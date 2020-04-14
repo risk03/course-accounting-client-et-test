@@ -1,4 +1,4 @@
-function fill(){
+function fill() {
     let row = $(this).find('td');
     $("input[name='id']").val(row[0].innerHTML);
     $("input[name='surname']").val(row[1].innerHTML);
