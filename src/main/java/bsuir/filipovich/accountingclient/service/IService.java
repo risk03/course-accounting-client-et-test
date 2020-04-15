@@ -3,7 +3,6 @@ package bsuir.filipovich.accountingclient.service;
 import java.util.ArrayList;
 
 public interface IService {
-    String getMessage();
 
     void create(String type, String[] strings);
 

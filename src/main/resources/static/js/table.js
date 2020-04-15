@@ -3,13 +3,13 @@ $(document).ready(function () {
             $(this).click(sortTable.bind(null, index));
         }
     );
-    $(".table-content tr").each(function (index) {
+    $(".table-content tr").each(function () {
         $(this).click(fill)
     });
-    $(".left-trigger").each(function (index) {
+    $(".left-trigger").each(function () {
         $(this).mouseenter(switchMenu)
     });
-    $("#black").each(function (index) {
+    $("#black").each(function () {
         $(this).mouseenter(switchMenu)
     })
 });
@@ -46,12 +46,12 @@ function sortTable(n) {
             shouldSwitch = false;
             x = rows[i].getElementsByTagName("td")[n];
             y = rows[i + 1].getElementsByTagName("td")[n];
-            if (dir == "asc") {
+            if (dir === "asc") {
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                     shouldSwitch = true;
                     break;
                 }
-            } else if (dir == "desc") {
+            } else if (dir === "desc") {
                 if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
                     shouldSwitch = true;
                     break;
@@ -63,7 +63,7 @@ function sortTable(n) {
             switching = true;
             switchcount++;
         } else {
-            if (switchcount == 0 && dir == "asc") {
+            if (switchcount === 0 && dir === "asc") {
                 dir = "desc";
                 switching = true;
             }
@@ -71,22 +71,3 @@ function sortTable(n) {
     }
 }
 
-function insertParam(key, value) {
-    key = encodeURI(key);
-    value = encodeURI(value);
-    var kvp = document.location.search.substr(1).split('&');
-    var i = kvp.length;
-    var x;
-    while (i--) {
-        x = kvp[i].split('=');
-        if (x[0] == key) {
-            x[1] = value;
-            kvp[i] = x.join('=');
-            break;
-        }
-    }
-    if (i < 0) {
-        kvp[kvp.length] = [key, value].join('=');
-    }
-    document.location.search = kvp.join('&');
-}

@@ -9,7 +9,7 @@ function fill() {
 }
 
 $(document).ready(function () {
-    $(".go").each(function (index) {
+    $(".go").each(function () {
         $(this).click(goToStore)
     });
 });
