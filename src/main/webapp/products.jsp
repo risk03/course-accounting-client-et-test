@@ -66,7 +66,7 @@
                 </tr>
                 <tr>
                     <td>Цена продажи</td>
-                    <td><label><input name="sellingPrice" type="number" min="0" max="10" step="0.01"></label></td>
+                    <td><label><input name="sellingPrice" type="number" min="0" max="9999999999" step="0.01"></label></td>
                     <td><label><input type="submit" value="Удалить" name="operation"></label></td>
                 </tr>
                 <tr>

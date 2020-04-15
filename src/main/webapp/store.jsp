@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/table.css"/>
     <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/table.js"></script>
+    <script src="${pageContext.request.contextPath}/js/store.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -26,7 +27,6 @@
                     <div class="wrapper-header">
                         <table class="table-header">
                             <tr>
-                                <th>№ П/П</th>
                                 <th>Наименование</th>
                                 <th>Количество</th>
                             </tr>
@@ -38,11 +38,13 @@
                 <td>
                     <div class="wrapper-content">
                         <table class="table-content">
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            <jsp:useBean id="assortmentList" scope="request" type="java.util.ArrayList"/>
+                            <c:forEach items="${assortmentList}" var="i">
+                                <tr>
+                                    <td><c:out value="${i[0]}"/></td>
+                                    <td><c:out value="${i[1]}"/></td>
+                                </tr>
+                            </c:forEach>
                         </table>
                     </div>
                 </td>
@@ -50,8 +52,25 @@
         </table>
     </div>
     <div class="down">
-        <jsp:useBean id="param" scope="request" type="java.lang.String"/>
-        Ай-ди: <c:out value="${param}"/>
+        <jsp:useBean id="storeInfo" scope="request" type="java.util.List"/>
+        <label>Магазин №${storeInfo[0]} - ${storeInfo[1]} ${storeInfo[2]} ${storeInfo[3]} ${storeInfo[4]} ${storeInfo[5]}</label>
+        <table>
+            <tr>
+                <td>Товар</td>
+                <td><label><select name="product">
+                    <jsp:useBean id="productList" scope="request" type="java.util.ArrayList"/>
+                    <c:forEach items="${productList}" var="i">
+                        <option><c:out value="${i}"/></option>
+                    </c:forEach>
+                </select></label></td>
+                <td><label><input type="submit" value="Установить" name="operation"></label></td>
+            </tr>
+            <tr>
+                <td>Количество</td>
+                <td><label><input name="quantity" type="number" min="0" max="9999999999" step="0.001"></label></td>
+                <td><label><input type="submit" value="Сохранить и выйти" name="operation"></label></td>
+            </tr>
+        </table>
     </div>
 </div>
 </body>

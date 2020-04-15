@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Controller
 public class MainController {
 
@@ -78,7 +83,15 @@ public class MainController {
     @RequestMapping(value = {"/store"}, method = RequestMethod.GET)
     public String viewStore(Model model,
                             @RequestParam(required = false) String id) {
-        model.addAttribute("param", id);
+        model.addAttribute("assortmentList", service.readAll("assortment", Integer.parseInt(id)));
+        model.addAttribute("storeId", id);
+        ArrayList<String> productArr = new ArrayList<>();
+        for (String[] row : service.readAll("product")){
+            productArr.add(row[0] + " - " + row[1]);
+        }
+        model.addAttribute("productList", productArr);
+        List<String> storeInfo = Arrays.asList(service.readOne("store", Integer.parseInt(id)));
+        model.addAttribute("storeInfo", storeInfo);
         return "store";
     }
 
