@@ -52,25 +52,29 @@
         </table>
     </div>
     <div class="down">
-        <jsp:useBean id="storeInfo" scope="request" type="java.util.List"/>
-        <label>Магазин №${storeInfo[0]} - ${storeInfo[1]} ${storeInfo[2]} ${storeInfo[3]} ${storeInfo[4]} ${storeInfo[5]}</label>
-        <table>
-            <tr>
-                <td>Товар</td>
-                <td><label><select name="product">
-                    <jsp:useBean id="productList" scope="request" type="java.util.ArrayList"/>
-                    <c:forEach items="${productList}" var="i">
-                        <option><c:out value="${i}"/></option>
-                    </c:forEach>
-                </select></label></td>
-                <td><label><input type="submit" value="Установить" name="operation"></label></td>
-            </tr>
-            <tr>
-                <td>Количество</td>
-                <td><label><input name="quantity" type="number" min="0" max="9999999999" step="0.001"></label></td>
-                <td><label><input type="submit" value="Сохранить и выйти" name="operation"></label></td>
-            </tr>
-        </table>
+        <form>
+            <jsp:useBean id="storeInfo" scope="request" type="java.util.List"/>
+            <label>Магазин №${storeInfo[0]}
+                - ${storeInfo[1]} ${storeInfo[2]} ${storeInfo[3]} ${storeInfo[4]} ${storeInfo[5]}</label>
+            <table>
+                <tr>
+                    <td>Товар</td>
+                    <td><label><select name="product">
+                        <jsp:useBean id="productList" scope="request" type="java.util.ArrayList"/>
+                        <c:forEach items="${productList}" var="i">
+                            <option><c:out value="${i}"/></option>
+                        </c:forEach>
+                    </select></label></td>
+                    <td><label><input type="submit" value="Установить" name="operation"></label></td>
+                </tr>
+                <tr>
+                    <td>Количество</td>
+                    <td><label><input name="quantity" type="number" min="0" max="9999999999" step="0.001"></label></td>
+                    <td></td>
+                </tr>
+            </table>
+            <input type="hidden" name="id" value="${storeInfo[0]}">
+        </form>
     </div>
 </div>
 </body>

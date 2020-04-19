@@ -37,7 +37,6 @@ public class MainController {
                                @RequestParam(required = false) String patronymic,
                                @RequestParam(required = false) String role,
                                @RequestParam(required = false) String login) {
-        model.addAttribute("userList", service.readAll("user"));
         if (operation != null) {
             switch (operation) {
                 case "Добавить":
@@ -51,6 +50,7 @@ public class MainController {
                     break;
             }
         }
+        model.addAttribute("userList", service.readAll("user"));
         return "users";
     }
 
@@ -63,7 +63,6 @@ public class MainController {
                                 @RequestParam(required = false) String number,
                                 @RequestParam(required = false) String building,
                                 @RequestParam(required = false) String operation) {
-        model.addAttribute("storeList", service.readAll("store"));
         if (operation != null) {
             switch (operation) {
                 case "Добавить":
@@ -77,19 +76,28 @@ public class MainController {
                     break;
             }
         }
+        model.addAttribute("storeList", service.readAll("store"));
         return "stores";
     }
 
     @RequestMapping(value = {"/store"}, method = RequestMethod.GET)
     public String viewStore(Model model,
-                            @RequestParam(required = false) String id) {
-        model.addAttribute("assortmentList", service.readAll("assortment", Integer.parseInt(id)));
+                            @RequestParam(required = false) String id,
+                            @RequestParam(required = false) String operation,
+                            @RequestParam(required = false) String product,
+                            @RequestParam(required = false) String quantity) {
         model.addAttribute("storeId", id);
+        if (operation != null && operation.equals("Установить")) {
+            service.setAssortment(Integer.parseInt(id), Integer.parseInt(product.substring(0, product.indexOf('-') - 1)), Double.parseDouble(quantity.replace(",",".")));
+        }
+        model.addAttribute("assortmentList", service.readAll("assortment", Integer.parseInt(id)));
+
         ArrayList<String> productArr = new ArrayList<>();
-        for (String[] row : service.readAll("product")){
+        for (String[] row : service.readAll("product")) {
             productArr.add(row[0] + " - " + row[1]);
         }
         model.addAttribute("productList", productArr);
+
         List<String> storeInfo = Arrays.asList(service.readOne("store", Integer.parseInt(id)));
         model.addAttribute("storeInfo", storeInfo);
         return "store";
@@ -103,7 +111,6 @@ public class MainController {
                                   @RequestParam(required = false) String sellingPrice,
                                   @RequestParam(required = false) String description,
                                   @RequestParam(required = false) String operation) {
-        model.addAttribute("productList", service.readAll("product"));
         if (operation != null) {
             switch (operation) {
                 case "Добавить":
@@ -117,6 +124,7 @@ public class MainController {
                     break;
             }
         }
+        model.addAttribute("productList", service.readAll("product"));
         return "products";
     }
 }

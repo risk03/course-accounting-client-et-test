@@ -15,4 +15,6 @@ public interface IService {
     void update(String type, String[] strings);
 
     void remove(String type, String id);
+
+    void setAssortment(int store, int product, Double quantity);
 }
