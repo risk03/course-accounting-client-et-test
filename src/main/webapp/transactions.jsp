@@ -4,11 +4,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Учёт реализации товаров - Магазины</title>
+    <title>Учёт реализации товаров - Чеки</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/table.css"/>
     <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/table.js"></script>
-    <script src="${pageContext.request.contextPath}/js/stores.js"></script>
+    <script src="${pageContext.request.contextPath}/js/transactions.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -29,11 +29,9 @@
                         <table class="table-header">
                             <tr>
                                 <th>ID</th>
-                                <th>Область</th>
-                                <th>Город</th>
-                                <th>Улица</th>
-                                <th>Дом</th>
-                                <th>Корпус</th>
+                                <th>Магазин</th>
+                                <th>Кассир</th>
+                                <th>Дата</th>
                                 <th></th>
                             </tr>
                         </table>
@@ -44,9 +42,9 @@
                 <td>
                     <div class="wrapper-content">
                         <table class="table-content">
-                            <jsp:useBean id="storeList" scope="request" type="java.util.ArrayList"/>
-                            <c:forEach items="${storeList}" var="i">
-                                <tr><td><c:out value="${i[0]}"/></td><td><c:out value="${i[1]}"/></td><td><c:out value="${i[2]}"/></td><td><c:out value="${i[3]}"/></td><td><c:out value="${i[4]}"/></td><td><c:out value="${i[5]}"/></td><td class="go">Ассортимент</td></tr>
+                            <jsp:useBean id="transactionList" scope="request" type="java.util.ArrayList"/>
+                            <c:forEach items="${transactionList}" var="i">
+                                <tr><td><c:out value="${i[0]}"/></td><td><c:out value="${i[1]}"/></td><td><c:out value="${i[2]}"/></td><td><c:out value="${i[3]}"/></td><td class="go">Подробнее</td></tr>
                             </c:forEach>
                         </table>
                     </div>
@@ -64,26 +62,28 @@
                     <td><label><input type="submit" value="Добавить" name="operation"></label></td>
                 </tr>
                 <tr>
-                    <td>Область</td>
-                    <td><label><input name="region" type="text" maxlength="45"></label></td>
+                    <td>Магазин №</td>
+                    <td><label><select name="store">
+                        <jsp:useBean id="storeList" scope="request" type="java.util.ArrayList"/>
+                        <c:forEach items="${storeList}" var="i">
+                            <option><c:out value="${i}"/></option>
+                        </c:forEach>
+                    </select></label></td>
                     <td><label><input type="submit" value="Сохранить" name="operation"></label></td>
                 </tr>
                 <tr>
-                    <td>Город</td>
-                    <td><label><input name="city" type="text" maxlength="45"></label></td>
+                    <td>Магазин №</td>
+                    <td><label><select name="user">
+                        <jsp:useBean id="userList" scope="request" type="java.util.ArrayList"/>
+                        <c:forEach items="${userList}" var="i">
+                            <option><c:out value="${i}"/></option>
+                        </c:forEach>
+                    </select></label></td>
                     <td><label><input type="submit" value="Удалить" name="operation"></label></td>
                 </tr>
                 <tr>
-                    <td>Улица</td>
-                    <td><label><input name="street" type="text" maxlength="45"></label></td>
-                </tr>
-                <tr>
-                    <td>Дом</td>
-                    <td><label><input name="number" type="text" maxlength="45"></label></td>
-                </tr>
-                <tr>
-                    <td>Корпус</td>
-                    <td><label><input name="building" type="text" maxlength="45"/></label></td>
+                    <td>Дата</td>
+                    <td><label><input name="date" type="datetime-local" step="1"></label></td>
                 </tr>
             </table>
         </form>

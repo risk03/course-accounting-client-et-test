@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/table.css"/>
     <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/table.js"></script>
-    <script src="${pageContext.request.contextPath}/js/store.js"></script>
+    <script src="${pageContext.request.contextPath}/js/transaction.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -39,8 +39,8 @@
                 <td>
                     <div class="wrapper-content">
                         <table class="table-content">
-                            <jsp:useBean id="assortmentList" scope="request" type="java.util.ArrayList"/>
-                            <c:forEach items="${assortmentList}" var="i">
+                            <jsp:useBean id="entryList" scope="request" type="java.util.ArrayList"/>
+                            <c:forEach items="${entryList}" var="i">
                                 <tr>
                                     <td><c:out value="${i[0]}"/></td>
                                     <td><c:out value="${i[1]}"/></td>
@@ -54,9 +54,11 @@
     </div>
     <div class="down">
         <form>
-            <jsp:useBean id="storeInfo" scope="request" type="java.util.List"/>
-            <label>Магазин №${storeInfo[0]}
-                - ${storeInfo[1]} ${storeInfo[2]} ${storeInfo[3]} ${storeInfo[4]} ${storeInfo[5]}</label>
+            <jsp:useBean id="transactionInfo" scope="request" type="java.util.List"/>
+            <label>Чек №${transactionInfo[0]}<br>
+                ${transactionInfo[1]}<br>
+                Кассир ${transactionInfo[2]}<br>
+                от ${transactionInfo[3]}</label>
             <table>
                 <tr>
                     <td>Товар</td>
@@ -74,7 +76,7 @@
                     <td></td>
                 </tr>
             </table>
-            <input type="hidden" name="id" value="${storeInfo[0]}">
+            <input type="hidden" name="id" value="${transactionInfo[0]}">
         </form>
     </div>
 </div>

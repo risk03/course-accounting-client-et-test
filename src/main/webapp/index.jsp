@@ -17,6 +17,7 @@
     <div id="menu">
         <input name="menubutton" type="button" value="Магазины" onclick="location.href='stores'">
         <input name="menubutton" type="button" value="Товары" onclick="location.href='products'">
+        <input name="menubutton" type="button" value="Чеки" onclick="location.href='transactions'">
         <input name="menubutton" type="button" value="Пользователи" onclick="location.href='users'">
     </div>
     <div class="welcome">

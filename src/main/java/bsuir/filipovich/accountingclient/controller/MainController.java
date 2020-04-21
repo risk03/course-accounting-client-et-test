@@ -25,6 +25,7 @@ public class MainController {
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(Model model) {
+        service.login("login", "password");
         return "index";
     }
 
@@ -37,6 +38,7 @@ public class MainController {
                                @RequestParam(required = false) String patronymic,
                                @RequestParam(required = false) String role,
                                @RequestParam(required = false) String login) {
+        service.logout();
         if (operation != null) {
             switch (operation) {
                 case "Добавить":
@@ -88,7 +90,7 @@ public class MainController {
                             @RequestParam(required = false) String quantity) {
         model.addAttribute("storeId", id);
         if (operation != null && operation.equals("Установить")) {
-            service.setAssortment(Integer.parseInt(id), Integer.parseInt(product.substring(0, product.indexOf('-') - 1)), Double.parseDouble(quantity.replace(",",".")));
+            service.setAssortment("store", Integer.parseInt(id), Integer.parseInt(product.substring(0, product.indexOf('-') - 1)), Double.parseDouble(quantity.replace(",", ".")));
         }
         model.addAttribute("assortmentList", service.readAll("assortment", Integer.parseInt(id)));
 
@@ -101,6 +103,66 @@ public class MainController {
         List<String> storeInfo = Arrays.asList(service.readOne("store", Integer.parseInt(id)));
         model.addAttribute("storeInfo", storeInfo);
         return "store";
+    }
+
+    @RequestMapping(value = {"/transactions"}, method = RequestMethod.GET)
+    public String viewTransactionList(Model model,
+                                      @RequestParam(required = false) String id,
+                                      @RequestParam(required = false) String store,
+                                      @RequestParam(required = false) String user,
+                                      @RequestParam(required = false) String date,
+                                      @RequestParam(required = false) String operation) {
+        if (operation != null) {
+            switch (operation) {
+                case "Добавить":
+                    service.create("transaction", new String[]{id, store.substring(0, store.indexOf('-') - 1), user.substring(0, user.indexOf('-') - 1), date.replace('T', ' ')});
+                    break;
+                case "Сохранить":
+                    service.update("transaction", new String[]{id, store.substring(0, store.indexOf('-') - 1), user.substring(0, user.indexOf('-') - 1), date.replace('T', ' ')});
+                    break;
+                case "Удалить":
+                    service.remove("transaction", id);
+                    break;
+            }
+        }
+        model.addAttribute("transactionList", service.readAll("transaction"));
+
+        ArrayList<String> stores = new ArrayList<>();
+        for (String[] row : service.readAll("store")) {
+            stores.add(row[0] + " - " + row[2] + ' ' + row[3] + ' ' + row[4] + (row[5] == null ? "" : '/' + row[5]));
+        }
+        model.addAttribute("storeList", stores);
+
+        ArrayList<String> users = new ArrayList<>();
+        for (String[] row : service.readAll("user")) {
+            users.add(row[0] + " - " + row[1] + " " + row[2].charAt(0) + (row[2].length() > 1 ? ". " : ' ') + row[3].charAt(0) + (row[3].length() > 1 ? ". " : ""));
+        }
+        model.addAttribute("userList", users);
+
+        return "transactions";
+    }
+
+    @RequestMapping(value = {"/transaction"}, method = RequestMethod.GET)
+    public String viewTransaction(Model model,
+                                  @RequestParam(required = false) String id,
+                                  @RequestParam(required = false) String operation,
+                                  @RequestParam(required = false) String product,
+                                  @RequestParam(required = false) String quantity) {
+        model.addAttribute("transactionId", id);
+        if (operation != null && operation.equals("Установить")) {
+            service.setAssortment("transaction", Integer.parseInt(id), Integer.parseInt(product.substring(0, product.indexOf('-') - 1)), Double.parseDouble(quantity.replace(",", ".")));
+        }
+        model.addAttribute("entryList", service.readAll("transactionentry", Integer.parseInt(id)));
+
+        ArrayList<String> productArr = new ArrayList<>();
+        for (String[] row : service.readAll("product")) {
+            productArr.add(row[0] + " - " + row[1]);
+        }
+        model.addAttribute("productList", productArr);
+
+        List<String> transactionInfo = Arrays.asList(service.readOne("transaction", Integer.parseInt(id)));
+        model.addAttribute("transactionInfo", transactionInfo);
+        return "transaction";
     }
 
 
