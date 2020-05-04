@@ -338,7 +338,7 @@ public class MainController {
 
     @RequestMapping(value = {"/product"}, method = RequestMethod.GET)
     public ModelAndView viewProductList(Model model,
-                                        @RequestParam(required = true) String id) {
+                                        @RequestParam() String id) {
         model.addAttribute("productInfo", new ArrayList<>(Arrays.asList(getArr("/readOne?type=product&id=" + id))));
         String[] exist = getArr(send("/showWhere?id=" + id));
         ArrayList<String[]> arr = new ArrayList<>();

@@ -105,11 +105,11 @@ class AccountingServerApplicationTests {
     private final String ADMIN_LOGIN = "risk03";
     private final String ADMIN_PASSWORD = "wasd";
     @SuppressWarnings("FieldCanBeLocal")
-    private String ADMIN_PATRONYMIC = "Викторович";
+    private final String ADMIN_PATRONYMIC = "Викторович";
     @SuppressWarnings("FieldCanBeLocal")
-    private String ADMIN_FORENAME = "Виктор";
+    private final String ADMIN_FORENAME = "Виктор";
     @SuppressWarnings("FieldCanBeLocal")
-    private String ADMIN_SURNAME = "Филиппович";
+    private final String ADMIN_SURNAME = "Филиппович";
     private final String[][] STORE = new String[][]{
             {"1", "", "г. Минск", "ул. Платонова", "39", ""},
             {"2", "", "г. Минск", "ул. Берута", "9", "3"},
