@@ -65,6 +65,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>accounting-client</finalName>
 	</build>
 
 </project>

@@ -30,7 +30,7 @@ public class MainController {
             String part1 = url.substring(0, url.indexOf('?') + 1);
             String part2 = URIUtil.encodePath(url.substring(url.indexOf('?') + 1), "UTF-8");
             part2 = part2.replace("%2500", "%00");
-            String fullURL = "http://localhost:9966/accounting-server" + part1 + part2;
+            String fullURL = "http://acc-server:9967/accounting-server" + part1 + part2;
             method = new GetMethod(fullURL);
             client.executeMethod(method);
             if (method.getStatusCode() == HttpStatus.SC_OK) {
