@@ -16,10 +16,12 @@
     </div>
     <div id="black"></div>
     <div id="menu">
+        <input name="menubutton" type="button" value="Главная страница" onclick="location.href='index'">
         <input name="menubutton" type="button" value="Магазины" onclick="location.href='stores'">
         <input name="menubutton" type="button" value="Товары" onclick="location.href='products'">
         <input name="menubutton" type="button" value="Чеки" onclick="location.href='transactions'">
         <input name="menubutton" type="button" value="Пользователи" onclick="location.href='users'">
+        <input name="menubutton" type="button" value="Отчёты" onclick="location.href='reports'">
     </div>
     <div class="up">
         <table class="main-table">

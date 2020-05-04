@@ -16,10 +16,12 @@
     </div>
     <div id="black"></div>
     <div id="menu">
+        <input name="menubutton" type="button" value="Главная страница" onclick="location.href='index'">
         <input name="menubutton" type="button" value="Магазины" onclick="location.href='stores'">
         <input name="menubutton" type="button" value="Товары" onclick="location.href='products'">
         <input name="menubutton" type="button" value="Чеки" onclick="location.href='transactions'">
         <input name="menubutton" type="button" value="Пользователи" onclick="location.href='users'">
+        <input name="menubutton" type="button" value="Отчёты" onclick="location.href='reports'">
     </div>
     <div class="up">
         <table class="main-table">
@@ -57,7 +59,7 @@
             <jsp:useBean id="transactionInfo" scope="request" type="java.util.List"/>
             <label>Чек №${transactionInfo[0]}<br>
                 ${transactionInfo[1]}<br>
-                Кассир ${transactionInfo[2]}<br>
+                ${transactionInfo[2]}<br>
                 от ${transactionInfo[3]}</label>
             <table>
                 <tr>

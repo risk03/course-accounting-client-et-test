@@ -11,7 +11,7 @@ $(document).ready(function () {
     });
     $("#black").each(function () {
         $(this).mouseenter(switchMenu)
-    })
+    });
 });
 
 function switchMenu() {

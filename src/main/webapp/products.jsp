@@ -16,10 +16,12 @@
     </div>
     <div id="black"></div>
     <div id="menu">
+        <input name="menubutton" type="button" value="Главная страница" onclick="location.href='index'">
         <input name="menubutton" type="button" value="Магазины" onclick="location.href='stores'">
         <input name="menubutton" type="button" value="Товары" onclick="location.href='products'">
         <input name="menubutton" type="button" value="Чеки" onclick="location.href='transactions'">
         <input name="menubutton" type="button" value="Пользователи" onclick="location.href='users'">
+        <input name="menubutton" type="button" value="Отчёты" onclick="location.href='reports'">
     </div>
     <div class="up">
         <table class="main-table">
@@ -32,6 +34,7 @@
                                 <th>Наименование</th>
                                 <th>Цена продажи</th>
                                 <th>Описание</th>
+                                <th></th>
                             </tr>
                         </table>
                     </div>
@@ -43,7 +46,13 @@
                         <table class="table-content">
                             <jsp:useBean id="productList" scope="request" type="java.util.ArrayList"/>
                             <c:forEach items="${productList}" var="i">
-                                <tr><td><c:out value="${i[0]}"/></td><td><c:out value="${i[1]}"/></td><td><c:out value="${i[2]}"/></td><td><c:out value="${i[3]}"/></td></tr>
+                                <tr>
+                                    <td><c:out value="${i[0]}"/></td>
+                                    <td><c:out value="${i[1]}"/></td>
+                                    <td><c:out value="${i[2]}"/></td>
+                                    <td><c:out value="${i[3]}"/></td>
+                                    <td class="go">Проверить наличие</td>
+                                </tr>
                             </c:forEach>
                         </table>
                     </div>
@@ -52,30 +61,34 @@
         </table>
     </div>
     <div class="down">
-        <form>
-            <label>Данные</label>
-            <table>
-                <tr>
-                    <td>ID</td>
-                    <td><label><input name="id" type="number" min="0"/></label></td>
-                    <td><label><input type="submit" value="Добавить" name="operation"></label></td>
-                </tr>
-                <tr>
-                    <td>Наименование</td>
-                    <td><label><input name="name" type="text" maxlength="60"></label></td>
-                    <td><label><input type="submit" value="Сохранить" name="operation"></label></td>
-                </tr>
-                <tr>
-                    <td>Цена продажи</td>
-                    <td><label><input name="sellingPrice" type="number" min="0" max="9999999999" step="0.01"></label></td>
-                    <td><label><input type="submit" value="Удалить" name="operation"></label></td>
-                </tr>
-                <tr>
-                    <td>Описание</td>
-                    <td><label><input name="description" type="text" maxlength="255"></label></td>
-                </tr>
-            </table>
-        </form>
+        <jsp:useBean id="loginStatus" scope="request" type="java.lang.String"/>
+        <c:if test="${loginStatus.equals(\"Заведующий\")}">
+            <form>
+                <label>Данные</label>
+                <table>
+                    <tr>
+                        <td>ID</td>
+                        <td><label><input name="id" type="number" min="0"/></label></td>
+                        <td><label><input type="submit" value="Добавить" name="operation"></label></td>
+                    </tr>
+                    <tr>
+                        <td>Наименование</td>
+                        <td><label><input name="name" type="text" maxlength="60"></label></td>
+                        <td><label><input type="submit" value="Сохранить" name="operation"></label></td>
+                    </tr>
+                    <tr>
+                        <td>Цена продажи</td>
+                        <td><label><input name="sellingPrice" type="number" min="0" max="9999999999"
+                                          step="0.01"></label></td>
+                        <td><label><input type="submit" value="Удалить" name="operation"></label></td>
+                    </tr>
+                    <tr>
+                        <td>Описание</td>
+                        <td><label><input name="description" type="text" maxlength="255"></label></td>
+                    </tr>
+                </table>
+            </form>
+        </c:if>
     </div>
 </div>
 </body>
